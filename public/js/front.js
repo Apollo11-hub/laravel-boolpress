@@ -1908,32 +1908,13 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_partials_HeaderComp_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/partials/HeaderComp.vue */ "./resources/js/components/partials/HeaderComp.vue");
-
+/* harmony import */ var _components_partials_HeaderComp_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/partials/HeaderComp.vue */ "./resources/js/components/partials/HeaderComp.vue");
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'App',
   components: {
-    HeaderComp: _components_partials_HeaderComp_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-  } // data() {
-  //     return {
-  //         posts:null
-  //     }
-  // },
-  // mounted() {
-  //     this.getApi()
-  // },
-  // methods: {
-  //     getApi(){
-  //         axios.get('/api/posts')
-  //         .then(res =>{
-  //             this.posts=res.data;
-  //         })
-  // //     }
-  // },
-
+    HeaderComp: _components_partials_HeaderComp_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
 });
 
 /***/ }),
@@ -1962,8 +1943,29 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'BlogComp'
+  name: 'BlogComp',
+  data: function data() {
+    return {
+      posts: null
+    };
+  },
+  mounted: function mounted() {
+    this.getApi();
+  },
+  methods: {
+    getApi: function getApi() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/posts').then(function (res) {
+        console.log(res);
+        _this.posts = res.data;
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2076,7 +2078,11 @@ var render = function render() {
   var _vm = this,
       _c = _vm._self._c;
 
-  return _c("h1", [_vm._v("blogvue")]);
+  return _c("div", [_c("h1", [_vm._v("Tutti i Post")]), _vm._v(" "), _c("ul", _vm._l(_vm.posts, function (post) {
+    return _c("li", {
+      key: post.id
+    }, [_c("h1", [_vm._v(_vm._s(post.title))]), _vm._v(" "), _c("p", [_vm._v(_vm._s(post.contenet))])]);
+  }), 0)]);
 };
 
 var staticRenderFns = [];
